@@ -65,8 +65,8 @@ TComplejo::operator-(const TComplejo& other) const{
 TComplejo
 TComplejo::operator*(const TComplejo& other) const{
   TComplejo aux(*this);
-  aux.re *= other.re;
-  aux.im *= other.im;
+  aux.re = aux.re*other.re - aux.im*other.im;
+  aux.im = aux.im*other.re + aux.re*other.im;
 
   return aux;
 
@@ -95,8 +95,7 @@ TComplejo::operator-(double real) const{
 TComplejo
 TComplejo::operator*(double real) const{
   TComplejo aux(real);
-  aux.re = this->re * aux.re;
-  aux.im = this->im * aux.im;
+  aux = (*this)*aux;
 
   return aux;
 
